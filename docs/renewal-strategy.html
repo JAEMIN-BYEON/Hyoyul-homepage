@@ -1,5 +1,5 @@
 <title>효율경영자문 홈페이지 재구축</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Gothic+A1:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root {
     --navy: #12365E;
@@ -12,8 +12,7 @@
     --rule: #DCE1E8;
     --rule-soft: #EAEEF3;
     --shade: #EEF1F5;
-    --serif: 'Noto Serif KR', 'Nanum Myeongjo', serif;
-    --sans: 'Gothic A1', 'Malgun Gothic', -apple-system, sans-serif;
+    --sans: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif;
     --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
   @media (prefers-color-scheme: dark) {
@@ -78,11 +77,11 @@
     margin: 0 0 1.25rem;
   }
   .masthead h1 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(1.9rem, 5vw, 3.15rem);
-    line-height: 1.28;
-    letter-spacing: -0.01em;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 3.05rem);
+    line-height: 1.26;
+    letter-spacing: -0.025em;
     margin: 0 0 1.5rem;
     text-wrap: balance;
     max-width: 20ch;
@@ -178,11 +177,11 @@
     padding-top: 0.35rem;
   }
   h2 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
     line-height: 1.4;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.02em;
     margin: 0;
     color: var(--ink);
     text-wrap: balance;
@@ -544,7 +543,7 @@
       <div class="chapter-head"><span class="chapter-num">05</span><h2>디자인 방향</h2></div>
 
       <h3>기준</h3>
-      <p>법무법인·세무법인 계열의 절제된 기업형 레이아웃을 기준으로 삼음. 정보 밀도는 낮게, 여백은 넓게, 시각적 장식은 최소로 유지함. 디자인이 눈에 띄는 것이 아니라 내용이 정확해 보이는 것이 목표임. 지금 읽고 있는 이 문서가 제안하는 색·서체·간격 체계를 그대로 적용한 예시임.</p>
+      <p>법무법인·세무법인 계열의 절제된 기업형 레이아웃을 기준으로 삼되, 톤은 모던·심플로 잡음. 명조체 없이 Pretendard 단일 서체 체계로 통일하고, 정보 밀도는 낮게, 여백은 넓게, 시각적 장식은 최소로 유지함. 디자인이 눈에 띄는 것이 아니라 내용이 정확해 보이는 것이 목표임. 지금 읽고 있는 이 문서가 제안하는 색·서체·간격 체계를 그대로 적용한 예시임.</p>
 
       <h3>컬러</h3>
       <div class="swatches">
@@ -564,13 +563,13 @@
           <caption>서체 체계</caption>
           <thead><tr><th>역할</th><th>서체</th><th>비고</th></tr></thead>
           <tbody>
-            <tr><td>국문 헤드라인</td><td>Noto Serif KR 600</td><td>명조체로 권위 표현, 대제목에만 사용</td></tr>
-            <tr><td>국문 본문</td><td>Pretendard (또는 Gothic A1) 400/500/700</td><td>본문 16px, 행간 1.7</td></tr>
+            <tr><td>국문 헤드라인</td><td>Pretendard 700</td><td>자간 -0.02em, 명조체 미사용</td></tr>
+            <tr><td>국문 본문</td><td>Pretendard 400/500</td><td>본문 16px, 행간 1.7</td></tr>
             <tr><td>수치·라벨</td><td>IBM Plex Mono 500</td><td>연도, 건수, 영문 라벨</td></tr>
           </tbody>
         </table>
       </div>
-      <p>본문 한 줄 길이는 국문 기준 40자 내외로 제한함. 폰트는 필요한 굵기만 서브셋으로 self-host 하여 현재 40여 종을 로드하는 구조를 정리함.</p>
+      <p>Pretendard 단일 서체로 통일해 모던·심플한 인상을 유지하고, 굵기 차이(700/500/400)만으로 위계를 만듦. 본문 한 줄 길이는 국문 기준 40자 내외로 제한함. 실제 사이트에서는 필요한 굵기만 서브셋으로 self-host 함.</p>
 
       <h3>레이아웃 원칙</h3>
       <ul>
