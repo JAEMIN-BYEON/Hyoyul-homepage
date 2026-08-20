@@ -4,565 +4,221 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>효율경영자문(주) | 전문인력 전원 경영지도사</title>
-<meta name="description" content="전문인력 전원 경영지도사. 공공기관이 발주한 경영컨설팅을 수행하는 자문사. 경영진단, 정책자금, 사업계획서, 기업인증, 소상공인 컨설팅.">
-<meta property="og:title" content="효율경영자문(주)">
-<meta property="og:description" content="전문인력 전원 경영지도사. 공공기관 발주 경영컨설팅 수행 자문사.">
-<meta property="og:url" content="https://hyoyul.co.kr/">
+<meta name="description" content="전문인력 전원 경영지도사. 경영전략, 기업인증, 기업진단, 정부지원 컨설팅. 연간 100건 이상 공공·민간 컨설팅 수행.">
+<meta property="og:title" content="효율경영자문(주) | 전문인력 전원 경영지도사">
+<meta property="og:description" content="전문인력 전원 경영지도사. 경영전략, 기업인증, 기업진단, 정부지원 컨설팅. 연간 100건 이상 공공·민간 컨설팅 수행.">
 <meta property="og:site_name" content="효율경영자문(주)">
-
 <!-- Pretendard: 실서비스에서는 서브셋 self-host로 교체 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-
-<style>
-  :root {
-    --navy: #12365E;
-    --navy-deep: #0B2440;
-    --bronze: #9A6B2F;
-    --ink: #131A24;
-    --muted: #5B6675;
-    --paper: #F7F8FA;
-    --surface: #FFFFFF;
-    --rule: #DCE1E8;
-    --rule-soft: #EAEEF3;
-    --shade: #EEF1F5;
-    --sans: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; animation: none !important; }
-  }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  img { max-width: 100%; }
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
-
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-
-  /* ---------- header ---------- */
-  .site-header {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--rule);
-  }
-  .header-inner { display: flex; align-items: center; gap: 2rem; height: 68px; }
-  .logo { display: flex; align-items: baseline; gap: 0.5rem; text-decoration: none; flex: none; }
-  .logo .ko { font-weight: 800; font-size: 1.12rem; letter-spacing: -0.02em; color: var(--navy); }
-  .logo .en { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; }
-  .gnb { display: none; margin-left: auto; }
-  .gnb a {
-    text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--ink);
-    padding: 0.5rem 0.9rem; transition: color 160ms ease;
-  }
-  .gnb a:hover { color: var(--navy); }
-  .header-tel {
-    margin-left: auto; text-decoration: none; flex: none;
-    font-family: var(--mono); font-size: 0.88rem; font-weight: 500; color: var(--navy);
-    border: 1px solid var(--navy); padding: 0.42rem 0.95rem;
-    transition: background 160ms ease, color 160ms ease;
-  }
-  .header-tel:hover { background: var(--navy); color: #fff; }
-  @media (min-width: 900px) {
-    .gnb { display: flex; }
-    .header-tel { margin-left: 0; }
-  }
-
-  /* ---------- hero ---------- */
-  .hero { background: var(--navy-deep); color: #F2F5F9; border-bottom: 3px solid var(--bronze); }
-  .hero-inner { padding: clamp(4.5rem, 12vw, 8.5rem) 0 clamp(3.5rem, 9vw, 6.5rem); }
-  .eyebrow {
-    font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-    letter-spacing: 0.2em; text-transform: uppercase; color: #C9A063; margin: 0 0 1.4rem;
-  }
-  .hero h1 {
-    margin: 0 0 1.4rem; font-weight: 800;
-    font-size: clamp(2rem, 5.5vw, 3.4rem); line-height: 1.24; letter-spacing: -0.03em;
-    text-wrap: balance; max-width: 18ch;
-  }
-  .hero h1 em { font-style: normal; color: #C9A063; }
-  .hero p { margin: 0 0 2.4rem; max-width: 46ch; color: #AEBCCC; font-size: 1.04rem; font-weight: 300; }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .btn {
-    display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
-    padding: 0.85rem 1.7rem; transition: opacity 160ms ease, background 160ms ease, color 160ms ease;
-  }
-  .btn-primary { background: #C9A063; color: #14243A; }
-  .btn-primary:hover { opacity: 0.88; }
-  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: #E8EEF5; }
-  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
-  .hero-foot {
-    border-top: 1px solid rgba(255,255,255,0.13);
-    padding: 1.4rem 0 2.6rem;
-    display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem;
-    font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.05em; color: #8FA1B5;
-  }
-  .hero-foot b { color: #DDE5EE; font-weight: 500; }
-
-  /* ---------- sections ---------- */
-  section { padding: clamp(4rem, 10vw, 6.5rem) 0; }
-  section + section { border-top: 1px solid var(--rule); }
-  .sec-head { margin-bottom: clamp(2rem, 5vw, 3.2rem); }
-  .sec-label {
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--bronze); margin: 0 0 0.8rem;
-  }
-  .sec-head h2 {
-    margin: 0; font-weight: 700; letter-spacing: -0.025em;
-    font-size: clamp(1.5rem, 3.6vw, 2.1rem); line-height: 1.35; text-wrap: balance;
-  }
-  .sec-head p { margin: 1rem 0 0; max-width: 62ch; color: var(--muted); }
-
-  /* ---------- trust strip ---------- */
-  .trust { background: var(--surface); }
-  .agency-grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .agency-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .agency-grid { grid-template-columns: repeat(4, 1fr); } }
-  .agency {
-    background: var(--surface); padding: 1.6rem 1.5rem;
-    display: flex; flex-direction: column; gap: 0.3rem;
-  }
-  .agency .name { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
-  .agency .role { font-size: 0.84rem; color: var(--muted); }
-  .trust-note { margin: 1.2rem 0 0; font-size: 0.82rem; color: var(--muted); }
-
-  /* ---------- practice ---------- */
-  .practice-grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); grid-template-columns: 1fr; }
-  @media (min-width: 700px) { .practice-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .practice-grid { grid-template-columns: repeat(5, 1fr); } }
-  .practice-card {
-    background: var(--surface); padding: 1.8rem 1.5rem 2rem;
-    display: flex; flex-direction: column; gap: 0.7rem;
-    text-decoration: none; transition: background 160ms ease;
-  }
-  .practice-card:hover { background: var(--shade); }
-  .practice-card .num { font-family: var(--mono); font-size: 0.72rem; color: var(--bronze); }
-  .practice-card h3 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; }
-  .practice-card p { margin: 0; font-size: 0.86rem; line-height: 1.65; color: var(--muted); flex: 1; }
-  .practice-card .more { font-size: 0.8rem; font-weight: 600; color: var(--navy); }
-
-  /* ---------- professionals ---------- */
-  .pro-section { background: var(--surface); }
-  .pro-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .pro-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .pro-grid { grid-template-columns: repeat(4, 1fr); } }
-  .pro-card { border: 1px solid var(--rule); background: var(--surface); display: flex; flex-direction: column; }
-  .pro-photo {
-    aspect-ratio: 4 / 5; background: var(--shade);
-    display: flex; align-items: center; justify-content: center;
-    border-bottom: 1px solid var(--rule);
-  }
-  .pro-photo svg { width: 88px; height: 88px; color: #B9C3CF; }
-  .pro-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.35rem; }
-  .pro-body .position { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bronze); }
-  .pro-body h3 { margin: 0; font-size: 1.18rem; font-weight: 700; letter-spacing: -0.02em; }
-  .pro-body .cert { font-size: 0.85rem; font-weight: 500; color: var(--navy); }
-  .pro-body .field { font-size: 0.8rem; line-height: 1.75; color: var(--muted); margin-top: 0.4rem; }
-
-  /* ---------- track record ---------- */
-  .record-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
-  .record-wrap table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.9rem; }
-  .record-wrap th, .record-wrap td { padding: 0.9rem 1.2rem; text-align: left; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
-  .record-wrap thead th {
-    background: var(--shade); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em;
-    border-bottom: 1px solid var(--rule); white-space: nowrap;
-  }
-  .record-wrap tbody tr:last-child td { border-bottom: none; }
-  .record-wrap .yr { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--bronze); font-weight: 500; }
-  .record-note { margin: 1.2rem 0 0; font-size: 0.82rem; color: var(--muted); }
-
-  /* ---------- contact ---------- */
-  .contact-section { background: var(--surface); }
-  .contact-grid { display: grid; gap: 3rem; grid-template-columns: 1fr; }
-  @media (min-width: 900px) { .contact-grid { grid-template-columns: 5fr 7fr; gap: 4.5rem; } }
-  .info-list { display: flex; flex-direction: column; gap: 0; border-top: 2px solid var(--navy); }
-  .info-row { display: flex; gap: 1.5rem; padding: 1.05rem 0.2rem; border-bottom: 1px solid var(--rule-soft); }
-  .info-row dt { flex: none; width: 5.5rem; font-size: 0.82rem; font-weight: 700; color: var(--muted); padding-top: 0.1rem; }
-  .info-row dd { margin: 0; font-size: 0.95rem; }
-  .info-row dd a { color: var(--navy); text-decoration: none; font-weight: 500; }
-  .info-row dd a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .info-row dd .sub { display: block; font-size: 0.82rem; color: var(--muted); }
-
-  .form { display: flex; flex-direction: column; gap: 1.1rem; }
-  .form-row { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
-  @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
-  .field label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.4rem; }
-  .field label .req { color: var(--bronze); }
-  .field input, .field select, .field textarea {
-    width: 100%; font-family: var(--sans); font-size: 0.95rem; color: var(--ink);
-    background: var(--paper); border: 1px solid var(--rule); padding: 0.75rem 0.9rem;
-    border-radius: 0;
-  }
-  .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none; border-color: var(--navy);
-  }
-  .field textarea { min-height: 130px; resize: vertical; }
-  .agree { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.84rem; color: var(--muted); }
-  .agree input { margin-top: 0.28rem; accent-color: var(--navy); }
-  .form .btn-submit {
-    align-self: flex-start; background: var(--navy); color: #fff; border: none;
-    font-family: var(--sans); font-weight: 700; font-size: 0.95rem;
-    padding: 0.9rem 2.4rem; cursor: pointer; transition: background 160ms ease;
-  }
-  .form .btn-submit:hover { background: var(--navy-deep); }
-
-  /* ---------- footer ---------- */
-  .site-footer { background: var(--navy-deep); color: #8FA1B5; padding: 3rem 0 5.5rem; }
-  @media (min-width: 900px) { .site-footer { padding-bottom: 3rem; } }
-  .footer-inner { display: flex; flex-direction: column; gap: 1.6rem; }
-  .footer-brand { color: #E8EEF5; font-weight: 800; font-size: 1.02rem; letter-spacing: -0.015em; }
-  .footer-info { font-size: 0.82rem; line-height: 1.9; }
-  .footer-info span { display: inline-block; margin-right: 1.4rem; }
-  .footer-copy { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: #5F7288; }
-
-  /* ---------- mobile call bar ---------- */
-  .callbar {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    display: flex; background: var(--navy);
-    border-top: 1px solid rgba(255,255,255,0.15);
-  }
-  .callbar a {
-    flex: 1; text-align: center; padding: 1rem 0;
-    color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem;
-  }
-  .callbar a + a { border-left: 1px solid rgba(255,255,255,0.18); }
-  @media (min-width: 900px) { .callbar { display: none; } }
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="logo" href="#top">
+    <a class="logo" href="index.html">
       <span class="ko">효율경영자문</span>
       <span class="en">Hyoyul Mgmt. Consulting</span>
     </a>
+    <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <nav class="gnb" aria-label="주 메뉴">
-      <a href="#practice">전문분야</a>
-      <a href="#professionals">전문인력</a>
-      <a href="#record">수행실적</a>
-      <a href="#contact">상담 문의</a>
+      <ul>
+        <li><a href="pages/about.html">회사소개</a>
+          <ul class="sub">
+            <li><a href="pages/about.html">인사말</a></li>
+            <li><a href="pages/history.html">연혁</a></li>
+          </ul>
+        </li>
+        <li><a href="pages/gallery.html">전문인력</a>
+          <ul class="sub">
+            <li><a href="pages/gallery.html">전문인력 소개</a></li>
+            <li><a href="pages/jaemin.html">변재민 경영지도사</a></li>
+            <li><a href="pages/ha.html">하철수 경영지도사</a></li>
+            <li><a href="pages/ms.html">곽민식 경영지도사</a></li>
+            <li><a href="pages/lee.html">이태휘 경영지도사</a></li>
+            <li><a href="pages/park.html">박상석 경영지도사</a></li>
+            <li><a href="pages/moon.html">문원식 경영지도사</a></li>
+            <li><a href="pages/kim.html">김민지 경영지도사</a></li>
+          </ul>
+        </li>
+        <li><a href="pages/service.html">경영전략</a></li>
+        <li><a href="pages/certification.html">기업인증</a></li>
+        <li><a href="pages/diagnosis.html">기업진단</a></li>
+        <li><a href="pages/government.html">정부지원 컨설팅</a></li>
+        <li><a href="pages/news.html">CONTACT</a>
+          <ul class="sub">
+            <li><a href="pages/news.html">공지사항</a></li>
+            <li><a href="pages/consult.html">상담문의</a></li>
+            <li><a href="pages/map.html">찾아오는길</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
     <a class="header-tel" href="tel:043-294-0428">043-294-0428</a>
   </div>
 </header>
 
-<main id="top">
-
-  <!-- hero -->
+<main>
   <div class="hero">
     <div class="wrap hero-inner">
       <p class="eyebrow">Hyoyul Management Consulting</p>
-      <h1>전문인력 전원<br><em>경영지도사</em>인 자문사</h1>
-      <p>공공기관이 발주한 경영컨설팅 사업을 수행합니다. 경영진단부터 정책자금, 사업계획서, 기업인증까지 자격을 갖춘 전문인력이 직접 진단하고 실행을 돕습니다.</p>
+      <h1>고객의 비즈니스 성공을<br><em>함께 합니다</em></h1>
+      <p>효율경영자문의 전문인력은 전원 경영지도사 자격을 보유하고 있습니다. 공공기관과 민간기업의 경영컨설팅을 연간 100건 이상 수행합니다.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#contact">상담 문의</a>
-        <a class="btn btn-ghost" href="#record">수행실적 보기</a>
+        <a class="btn btn-primary" href="pages/consult.html">상담하기</a>
+        <a class="btn btn-ghost" href="pages/about.html">회사소개</a>
       </div>
-    </div>
-    <div class="wrap hero-foot">
-      <span>소재지 <b>충북 청주시 서원구</b></span>
-      <span>전문인력 <b>경영지도사 전원 보유</b></span>
-      <span>업종 <b>경영컨설팅</b></span>
     </div>
   </div>
 
-  <!-- trust -->
-  <section class="trust" id="trust">
+  <section class="bg-surface">
     <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-label">Public Engagements</p>
-        <h2>공공기관이 발주한 컨설팅을 수행합니다</h2>
-        <p>검증 가능한 제3자 신뢰가 저희의 기준입니다. 성공보수형 알선이 아니라, 공공기관 심사를 거쳐 선정된 수행기관으로서 컨설팅을 진행합니다.</p>
+      <div class="stat-grid">
+        <div class="stat"><span class="k">중소기업상담회사</span><span class="v">중소벤처기업부 등록 제2021-644호</span></div>
+        <div class="stat"><span class="k">전문가 전원</span><span class="v">경영지도사 자격 보유</span></div>
+        <div class="stat"><span class="k">연간 100건</span><span class="v">공공 · 민간 컨설팅 수행</span></div>
+        <div class="stat"><span class="k">정부지원사업</span><span class="v">다양한 정부지원사업 지도 실적</span></div>
       </div>
-      <div class="agency-grid">
-        <div class="agency">
-          <span class="name">전남신용보증재단</span>
-          <span class="role">소상공인 디지털전환 컨설팅 수행기관</span>
-        </div>
-        <div class="agency">
-          <span class="name">충남경제진흥원</span>
-          <span class="role">경영위기 소상공인 재기 지원 멘토링</span>
-        </div>
-        <div class="agency">
-          <span class="name">발주기관 추가 예정</span>
-          <span class="role">수행실적 원장 정리 후 등재</span>
-        </div>
-        <div class="agency">
-          <span class="name">발주기관 추가 예정</span>
-          <span class="role">수행실적 원장 정리 후 등재</span>
-        </div>
-      </div>
-      <p class="trust-note">※ 발주기관·사업명은 계약상 공개 가능 범위 내에서 게시합니다.</p>
     </div>
   </section>
 
-  <!-- practice -->
-  <section id="practice">
+  <section>
     <div class="wrap">
       <div class="sec-head">
-        <p class="sec-label">Practice Areas</p>
-        <h2>전문분야</h2>
+        <p class="sec-label">Services</p>
+        <h2>사업분야</h2>
       </div>
-      <div class="practice-grid">
-        <a class="practice-card" href="#contact">
+      <div class="card-grid cols-4">
+        <a class="card" href="pages/service.html">
           <span class="num">01</span>
-          <h3>경영진단</h3>
-          <p>재무·조직·판로를 종합 진단하고 우선순위가 매겨진 개선 과제를 도출합니다.</p>
+          <h3>경영전략</h3>
+          <p>경영전략 수립·검토, 미션·비전 수립, 사업계획서 작성, 사업타당성 검토, BM 구체화.</p>
           <span class="more">자세히 보기 →</span>
         </a>
-        <a class="practice-card" href="#contact">
+        <a class="card" href="pages/certification.html">
           <span class="num">02</span>
-          <h3>정책자금·정부지원</h3>
-          <p>기업 상황에 맞는 정책자금을 검토하고 신청부터 집행까지 절차를 자문합니다.</p>
-          <span class="more">자세히 보기 →</span>
-        </a>
-        <a class="practice-card" href="#contact">
-          <span class="num">03</span>
-          <h3>사업계획서 수립</h3>
-          <p>심사역 관점에서 자금 용도와 상환 계획이 읽히는 사업계획서를 함께 만듭니다.</p>
-          <span class="more">자세히 보기 →</span>
-        </a>
-        <a class="practice-card" href="#contact">
-          <span class="num">04</span>
           <h3>기업인증</h3>
-          <p>벤처기업, 이노비즈, ISO 등 기업 단계에 필요한 인증 취득을 지원합니다.</p>
+          <p>ISO, 메인비즈, 이노비즈, 기업부설연구소, NEP·NET, 장애인기업, 여성기업 인증.</p>
           <span class="more">자세히 보기 →</span>
         </a>
-        <a class="practice-card" href="#contact">
-          <span class="num">05</span>
-          <h3>소상공인 컨설팅</h3>
-          <p>공공기관 지원사업과 연계한 소상공인 경영개선 컨설팅·멘토링을 수행합니다.</p>
+        <a class="card" href="pages/diagnosis.html">
+          <span class="num">03</span>
+          <h3>기업진단</h3>
+          <p>재무·회계 진단과 지도, 건설업·정보통신업·전기공사업 기업진단, 자금조달 자문.</p>
+          <span class="more">자세히 보기 →</span>
+        </a>
+        <a class="card" href="pages/government.html">
+          <span class="num">04</span>
+          <h3>정부지원 컨설팅</h3>
+          <p>중소기업 혁신바우처, 비즈니스지원단 현장클리닉, 소진공·신보·서금원 컨설팅.</p>
           <span class="more">자세히 보기 →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- professionals -->
-  <section class="pro-section" id="professionals">
+  <section class="bg-surface">
     <div class="wrap">
       <div class="sec-head">
         <p class="sec-label">Professionals</p>
-        <h2>전문인력</h2>
-        <p>효율은 실력과 전문성을 갖춘 전문인력을 구성하고 있으며, 전문인력 전원 경영지도사 자격을 갖추고 있습니다.</p>
+        <h2>전문인력 전원 경영지도사</h2>
+        <p>효율의 전문인력은 전원 경영지도사 자격을 보유하고 있으며, 공공기관 컨설팅 POOL에 등록되어 있습니다.</p>
       </div>
       <div class="pro-grid">
-        <!-- 사진: 동일 배경·조명 촬영본으로 교체 예정 -->
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="변재민 대표이사 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
+        <a class="pro-card" href="pages/jaemin.html">
+          <div class="pro-photo" role="img" aria-label="변재민 사진 준비 중"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
           <div class="pro-body">
             <span class="position">CEO</span>
             <h3>변재민</h3>
             <span class="cert">대표이사 · 경영지도사</span>
-            <span class="field">2023년 중소벤처기업부 장관상 수상<br>前 스위치온경영컨설팅 컨설턴트<br>전남신용보증재단·신용보증기금 컨설턴트</span>
+            <span class="field">2023년 중소벤처기업부 장관상 수상</span>
           </div>
-        </div>
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="하철수 이사 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
+        </a>
+        <a class="pro-card" href="pages/ha.html">
+          <div class="pro-photo" role="img" aria-label="하철수 사진 준비 중"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
           <div class="pro-body">
             <span class="position">Director</span>
             <h3>하철수</h3>
             <span class="cert">이사 · 경영지도사</span>
-            <span class="field">前 SC제일은행 기업금융 지점장<br>소상공인시장진흥공단 정책자금 사후관리 멘토<br>신용보증기금·서민금융진흥원 컨설턴트</span>
+            <span class="field">前 SC제일은행 기업금융 지점장</span>
           </div>
-        </div>
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="곽민식 컨설턴트 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
+        </a>
+        <a class="pro-card" href="pages/ms.html">
+          <div class="pro-photo" role="img" aria-label="곽민식 사진 준비 중"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
           <div class="pro-body">
             <span class="position">Consultant</span>
             <h3>곽민식</h3>
             <span class="cert">컨설턴트 · 경영지도사</span>
-            <span class="field">前 ㈜티엔택 대표이사<br>창업보육전문매니저<br>용인시산업진흥원·충북기업진흥원 전문위원</span>
+            <span class="field">前 ㈜티엔택 대표이사</span>
           </div>
-        </div>
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="이태휘 컨설턴트 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
+        </a>
+        <a class="pro-card" href="pages/lee.html">
+          <div class="pro-photo" role="img" aria-label="이태휘 사진 준비 중"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
           <div class="pro-body">
             <span class="position">Consultant</span>
             <h3>이태휘</h3>
-            <span class="cert">컨설턴트 · 경영지도사 · 재경관리사</span>
-            <span class="field">前 ㈜SKC 재무지원팀<br>저서 『인사·노무 ESG 실천 매뉴얼』<br>중소벤처기업부 비즈니스 지원단 자문위원</span>
-          </div>
-        </div>
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="박상석 컨설턴트 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
-          <div class="pro-body">
-            <span class="position">Consultant</span>
-            <h3>박상석</h3>
             <span class="cert">컨설턴트 · 경영지도사</span>
-            <span class="field">주요이력 확정 후 기재</span>
+            <span class="field">前 ㈜SKC 재무지원팀</span>
           </div>
-        </div>
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="문원식 컨설턴트 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
-          <div class="pro-body">
-            <span class="position">Consultant</span>
-            <h3>문원식</h3>
-            <span class="cert">컨설턴트 · 경영지도사</span>
-            <span class="field">주요이력 확정 후 기재</span>
-          </div>
-        </div>
-        <div class="pro-card">
-          <div class="pro-photo" role="img" aria-label="김민지 컨설턴트 사진 준비 중">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-          </div>
-          <div class="pro-body">
-            <span class="position">Consultant</span>
-            <h3>김민지</h3>
-            <span class="cert">컨설턴트 · 경영지도사</span>
-            <span class="field">주요이력 확정 후 기재</span>
-          </div>
-        </div>
+        </a>
       </div>
+      <p style="margin:2rem 0 0"><a class="btn btn-navy" href="pages/gallery.html">전문인력 전체 보기</a></p>
     </div>
   </section>
 
-  <!-- track record -->
-  <section id="record">
+  <section>
     <div class="wrap">
       <div class="sec-head">
-        <p class="sec-label">Track Record</p>
-        <h2>수행실적</h2>
+        <p class="sec-label">Consulting Channel</p>
+        <h2>상담 방법</h2>
       </div>
-      <div class="record-wrap">
-        <table>
-          <thead>
-            <tr><th>연도</th><th>발주기관</th><th>사업명</th><th>역할</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="yr">20XX</td>
-              <td>충남경제진흥원</td>
-              <td>경영위기 소상공인 재기 지원사업</td>
-              <td>멘토링 수행</td>
-            </tr>
-            <tr>
-              <td class="yr">20XX</td>
-              <td>전남신용보증재단</td>
-              <td>소상공인 디지털전환 컨설팅</td>
-              <td>컨설팅 수행</td>
-            </tr>
-            <tr>
-              <td class="yr">20XX</td>
-              <td>수행실적 원장 정리 후 등재</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="record-note">※ 연도·건수는 수행실적 원장 확정 후 입력합니다. 수진업체 정보는 게시하지 않습니다.</p>
-    </div>
-  </section>
-
-  <!-- contact -->
-  <section class="contact-section" id="contact">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-label">Contact</p>
-        <h2>상담 문의</h2>
-        <p>기업 상황을 남겨주시면 담당 경영지도사가 확인 후 연락드립니다.</p>
-      </div>
-      <div class="contact-grid">
-        <dl class="info-list">
-          <div class="info-row">
-            <dt>전화</dt>
-            <dd><a href="tel:043-294-0428">043-294-0428</a><span class="sub">평일 09:00 – 18:00</span></dd>
-          </div>
-          <div class="info-row">
-            <dt>팩스</dt>
-            <dd>0303-3441-0743</dd>
-          </div>
-          <div class="info-row">
-            <dt>이메일</dt>
-            <dd><a href="mailto:hyoyul0428@naver.com">hyoyul0428@naver.com</a></dd>
-          </div>
-          <div class="info-row">
-            <dt>주소</dt>
-            <dd>충북 청주시 서원구 산남로62번길 35<span class="sub">미소시티II 4층 405호</span></dd>
-          </div>
-          <div class="info-row">
-            <dt>오시는 길</dt>
-            <dd><a href="https://map.kakao.com/link/search/충북 청주시 서원구 산남로62번길 35" target="_blank" rel="noopener">카카오맵에서 보기</a></dd>
-          </div>
-        </dl>
-
-        <form class="form" id="inquiry">
-          <div class="form-row">
-            <div class="field">
-              <label for="f-company">상호 <span class="req">*</span></label>
-              <input id="f-company" name="company" type="text" required autocomplete="organization">
-            </div>
-            <div class="field">
-              <label for="f-name">담당자명 <span class="req">*</span></label>
-              <input id="f-name" name="name" type="text" required autocomplete="name">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field">
-              <label for="f-phone">연락처 <span class="req">*</span></label>
-              <input id="f-phone" name="phone" type="tel" required autocomplete="tel">
-            </div>
-            <div class="field">
-              <label for="f-topic">문의분야 <span class="req">*</span></label>
-              <select id="f-topic" name="topic" required>
-                <option value="">선택해주세요</option>
-                <option>경영진단</option>
-                <option>정책자금·정부지원</option>
-                <option>사업계획서 수립</option>
-                <option>기업인증</option>
-                <option>소상공인 컨설팅</option>
-                <option>기타</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label for="f-msg">문의 내용</label>
-            <textarea id="f-msg" name="message" placeholder="기업 현황과 문의 배경을 간략히 남겨주세요."></textarea>
-          </div>
-          <label class="agree">
-            <input type="checkbox" required>
-            <span>개인정보 수집·이용에 동의합니다. 수집 항목은 상담 회신 목적으로만 사용하며, 처리 방침은 개인정보처리방침 페이지에 게시합니다.</span>
-          </label>
-          <button class="btn-submit" type="submit">문의 보내기</button>
-        </form>
+      <div class="card-grid cols-3">
+        <div class="card">
+          <span class="num">01</span>
+          <h3>전화상담</h3>
+          <p>문의내용 남겨주시면 전문인력이 직접 연락드립니다.</p>
+        </div>
+        <div class="card">
+          <span class="num">02</span>
+          <h3>ZOOM 상담</h3>
+          <p>문의내용 남겨주시면 전문인력과 전화 상담 후, ZOOM 상담 진행드립니다.</p>
+        </div>
+        <div class="card">
+          <span class="num">03</span>
+          <h3>대면 상담</h3>
+          <p>문의내용 남겨주시면 직접 대면을 통해 심층 상담 진행드립니다.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="cta-band">
+    <div class="wrap inner">
+      <div>
+        <h2>파트너의 비즈니스 성공을 함께 합니다</h2>
+        <p>문의내용 남겨주시면 전문인력이 직접 연락드립니다.</p>
+      </div>
+      <a class="btn btn-primary" href="pages/consult.html">상담하기</a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <span class="footer-brand">효율경영자문(주)</span>
+    <nav class="footer-nav" aria-label="푸터 메뉴">
+      <a href="index.html">홈</a>
+      <a href="pages/about.html">회사소개</a>
+      <a href="#none">이용약관</a>
+      <a href="#none">개인정보처리방침</a>
+    </nav>
     <p class="footer-info">
       <span>대표이사 변재민</span>
-      <span>사업자등록번호 188-81-02312</span><br>
+      <span>사업자등록번호 188-81-02312</span>
+      <span>중소기업상담회사 제2021-644호</span><br>
       <span>충북 청주시 서원구 산남로62번길 35, 미소시티II 4층 405호</span><br>
       <span>TEL 043-294-0428</span>
       <span>FAX 0303-3441-0743</span>
@@ -572,19 +228,12 @@
   </div>
 </footer>
 
-<!-- mobile fixed call bar -->
 <div class="callbar">
   <a href="tel:043-294-0428">전화 상담</a>
-  <a href="#contact">문의 남기기</a>
+  <a href="pages/consult.html">문의 남기기</a>
 </div>
 
-<script>
-  // 시안 단계: 폼 발송은 구축 시 연동
-  document.getElementById('inquiry').addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('시안 화면입니다. 실제 구축 시 이메일 발송이 연동됩니다.');
-  });
-</script>
+<script src="assets/js/site.js"></script>
 
 </body>
 </html>
