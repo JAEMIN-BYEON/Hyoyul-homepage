@@ -1,0 +1,752 @@
+<title>효율경영자문 홈페이지 재구축</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Gothic+A1:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --navy: #12365E;
+    --navy-deep: #0B2440;
+    --bronze: #9A6B2F;
+    --ink: #131A24;
+    --muted: #5B6675;
+    --paper: #F7F8FA;
+    --surface: #FFFFFF;
+    --rule: #DCE1E8;
+    --rule-soft: #EAEEF3;
+    --shade: #EEF1F5;
+    --serif: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+    --sans: 'Gothic A1', 'Malgun Gothic', -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy: #7BA6D6;
+      --navy-deep: #0A121B;
+      --bronze: #C9A063;
+      --ink: #E3E9F0;
+      --muted: #97A3B2;
+      --paper: #0D141C;
+      --surface: #141C26;
+      --rule: #2A3542;
+      --rule-soft: #1E2833;
+      --shade: #182130;
+    }
+  }
+  :root[data-theme="dark"] {
+    --navy: #7BA6D6;
+    --navy-deep: #0A121B;
+    --bronze: #C9A063;
+    --ink: #E3E9F0;
+    --muted: #97A3B2;
+    --paper: #0D141C;
+    --surface: #141C26;
+    --rule: #2A3542;
+    --rule-soft: #1E2833;
+    --shade: #182130;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    background: var(--navy-deep);
+    color: #F2F5F9;
+    padding: clamp(3rem, 8vw, 5.5rem) 1.5rem clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 3px solid var(--bronze);
+  }
+  .masthead-inner { max-width: 1180px; margin: 0 auto; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #C9A063;
+    margin: 0 0 1.25rem;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 5vw, 3.15rem);
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.5rem;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+  .masthead p {
+    margin: 0;
+    max-width: 56ch;
+    color: #B8C4D2;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.25rem;
+    margin-top: 2.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: #94A5B8;
+  }
+  .meta-strip b { color: #DDE5EE; font-weight: 500; }
+
+  /* ---------- shell ---------- */
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.5rem clamp(4rem, 10vw, 7rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 1024px) {
+    .shell { grid-template-columns: 216px minmax(0, 1fr); gap: 4.5rem; }
+  }
+
+  /* ---------- toc ---------- */
+  .toc { display: none; }
+  @media (min-width: 1024px) {
+    .toc {
+      display: block;
+      position: sticky;
+      top: 2.5rem;
+      align-self: start;
+      padding-top: 3.5rem;
+      max-height: calc(100vh - 5rem);
+      overflow-y: auto;
+    }
+    .toc-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0.75rem;
+    }
+    .toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.1rem; }
+    .toc a {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.36rem 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.83rem;
+      line-height: 1.45;
+      border-left: 2px solid transparent;
+      padding-left: 0.7rem;
+      margin-left: -0.7rem;
+      transition: color 180ms ease, border-color 180ms ease;
+    }
+    .toc a:hover, .toc a:focus-visible { color: var(--navy); border-left-color: var(--bronze); }
+    .toc a .n { font-family: var(--mono); font-size: 0.72rem; color: var(--bronze); flex: none; padding-top: 0.1rem; }
+  }
+
+  /* ---------- article ---------- */
+  article { padding-top: clamp(2.5rem, 6vw, 3.5rem); min-width: 0; }
+
+  section.chapter { padding-bottom: clamp(3rem, 7vw, 4.5rem); }
+  section.chapter + section.chapter { border-top: 1px solid var(--rule); padding-top: clamp(2.75rem, 6vw, 4rem); }
+
+  .chapter-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.75rem; }
+  .chapter-num {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--bronze);
+    letter-spacing: 0.06em;
+    flex: none;
+    padding-top: 0.35rem;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.02rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    color: var(--navy);
+    margin: 2.5rem 0 0.9rem;
+    text-wrap: balance;
+  }
+  section.chapter > h3:first-of-type { margin-top: 0; }
+
+  p { margin: 0 0 1.15rem; max-width: 74ch; }
+  p:last-child { margin-bottom: 0; }
+  article ul, article ol { max-width: 74ch; margin: 0 0 1.15rem; padding-left: 1.25rem; }
+  article li { margin-bottom: 0.45rem; }
+  article li::marker { color: var(--bronze); }
+
+  strong { font-weight: 700; color: var(--ink); }
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--shade);
+    padding: 0.1em 0.36em;
+    border-radius: 2px;
+    color: var(--navy);
+  }
+  a { color: var(--navy); text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+
+  /* ---------- lede ---------- */
+  .lede {
+    font-size: 1.06rem;
+    line-height: 1.8;
+    color: var(--ink);
+    border-left: 3px solid var(--bronze);
+    padding-left: 1.4rem;
+    max-width: 70ch;
+  }
+
+  /* ---------- key decisions ---------- */
+  .decisions { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); max-width: 74ch; }
+  .decisions li { background: var(--surface); margin: 0; padding: 1.1rem 1.35rem; display: flex; gap: 1.1rem; }
+  .decisions .n { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; color: var(--bronze); flex: none; padding-top: 0.22rem; }
+
+  /* ---------- tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 0 0 1.5rem; border: 1px solid var(--rule); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.885rem; line-height: 1.6; }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.75rem 1rem 0.55rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  th, td { padding: 0.72rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule-soft); }
+  thead th {
+    background: var(--shade);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td code { background: transparent; padding: 0; color: var(--muted); }
+
+  /* ---------- tree ---------- */
+  pre.tree {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.85;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--navy);
+    padding: 1.35rem 1.5rem;
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+    color: var(--ink);
+  }
+  pre.tree .c { color: var(--muted); }
+
+  /* ---------- swatches ---------- */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 0 0 1.5rem; }
+  .sw { background: var(--surface); padding: 0.95rem 1rem; }
+  .sw .chip { height: 40px; border: 1px solid var(--rule); margin-bottom: 0.7rem; }
+  .sw .role { font-size: 0.82rem; font-weight: 700; display: block; }
+  .sw .hex { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+
+  /* ---------- checklist ---------- */
+  .checklist { list-style: none; padding: 0; margin: 0 0 1.15rem; max-width: 74ch; }
+  .checklist li { display: flex; gap: 0.85rem; padding: 0.5rem 0; border-bottom: 1px dashed var(--rule); margin: 0; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist .box { flex: none; width: 15px; height: 15px; border: 1.5px solid var(--muted); margin-top: 0.35rem; }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--bronze);
+    padding: 1.3rem 1.5rem;
+    margin: 1.75rem 0 0;
+    max-width: 74ch;
+  }
+  .callout .label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .callout p { margin: 0; font-size: 0.94rem; }
+
+  /* ---------- closing ---------- */
+  .closing { border-top: 1px solid var(--rule); padding-top: 1.75rem; margin-top: 1rem; }
+  .closing p { font-size: 0.88rem; color: var(--muted); }
+</style>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="eyebrow">Renewal Strategy</p>
+    <h1>효율경영자문(주)<br>홈페이지 재구축 전략</h1>
+    <p>현 사이트 15개 페이지 전량이 빌더 템플릿 예시문구 상태임. 개선이 아니라 신규 구축으로 규정하고, 법무법인·세무법인 계열의 전문가 조직 구조를 기준으로 재설계함.</p>
+    <div class="meta-strip">
+      <span>작성일 <b>2026.08.20</b></span>
+      <span>대상 <b>www.hyoyul.co.kr</b></span>
+      <span>구축 방식 <b>Next.js 자체 구축</b></span>
+      <span>기간 <b>8주</b></span>
+      <span>상태 <b>검토용 초안</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="목차">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#c1"><span class="n">01</span><span>현황 진단</span></a></li>
+      <li><a href="#c2"><span class="n">02</span><span>포지셔닝</span></a></li>
+      <li><a href="#c3"><span class="n">03</span><span>정보구조 설계</span></a></li>
+      <li><a href="#c4"><span class="n">04</span><span>페이지별 필요 자산</span></a></li>
+      <li><a href="#c5"><span class="n">05</span><span>디자인 방향</span></a></li>
+      <li><a href="#c6"><span class="n">06</span><span>기술 아키텍처</span></a></li>
+      <li><a href="#c7"><span class="n">07</span><span>검색 노출 전략</span></a></li>
+      <li><a href="#c8"><span class="n">08</span><span>전환 설계</span></a></li>
+      <li><a href="#c9"><span class="n">09</span><span>실행 로드맵</span></a></li>
+      <li><a href="#c10"><span class="n">10</span><span>준비 자산</span></a></li>
+      <li><a href="#c11"><span class="n">11</span><span>리스크</span></a></li>
+      <li><a href="#c12"><span class="n">12</span><span>비용 구조</span></a></li>
+      <li><a href="#c13"><span class="n">13</span><span>다음 결정 사항</span></a></li>
+    </ol>
+  </nav>
+
+  <article>
+    <section class="chapter" id="c0">
+      <p class="lede">현 사이트는 clickn.co.kr 임대형 빌더로 만들어졌고, 사이트맵에 등록된 15개 페이지 전부가 빌더 템플릿의 예시문구 상태임. 회사 콘텐츠는 관리자 설정에 입력된 기본정보 외에 존재하지 않음. 이전할 콘텐츠가 없다는 점은 제약이 아니라 조건임. 기존 URL 색인 자산이 없으므로 리다이렉트 부담 없이 정보구조를 처음부터 설계할 수 있음.</p>
+      <ol class="decisions">
+        <li><span class="n">01</span><span>포지셔닝은 법무법인·세무법인과 동일한 전문가 조직 구조(자격, 사람, 실적)로 잡음</span></li>
+        <li><span class="n">02</span><span>발주기관명 공개가 가능한 공공기관 수행실적을 사이트의 중심 자산으로 배치함</span></li>
+        <li><span class="n">03</span><span>Next.js 기반 자체 구축으로 소스 소유권과 SEO 제어권을 확보함</span></li>
+        <li><span class="n">04</span><span>8주 단위로 진행하되 병목은 개발이 아니라 콘텐츠 작성임을 전제로 일정을 배분함</span></li>
+      </ol>
+    </section>
+
+    <section class="chapter" id="c1">
+      <div class="chapter-head"><span class="chapter-num">01</span><h2>현황 진단</h2></div>
+
+      <h3>콘텐츠</h3>
+      <p>15개 페이지 전량이 빌더 데모 문구를 유지하고 있음. 서로 다른 업종 템플릿이 섞여 있어 페이지 간 일관성도 없음.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>페이지별 현재 내용</caption>
+          <thead><tr><th>페이지</th><th>현재 실려 있는 내용</th><th>원본 템플릿 업종</th></tr></thead>
+          <tbody>
+            <tr><td><code>/</code> 메인</td><td>"쇼파 컬렉션 / 인테리어 의자 / 1인 가구 · 제품설명이 들어갑니다"</td><td>가구 쇼핑몰</td></tr>
+            <tr><td>전 페이지 하단 CTA</td><td>"영원히 기억될 최고의 순간을 담아드립니다"</td><td>웨딩 촬영</td></tr>
+            <tr><td><code>/pages/cunsult</code></td><td>"입주단지 / 분양단지 / 공사단지"</td><td>아파트 분양</td></tr>
+            <tr><td><code>/jaemin</code> <code>/ha</code> <code>/ms</code> <code>/lee</code></td><td>윤동주 시 더미텍스트, 4개 페이지 동일</td><td>브랜드 소개</td></tr>
+            <tr><td><code>/service</code> <code>/diagnosis</code> <code>/government</code> <code>/certification</code></td><td>"트렌디한 디자인 시스템의 UX 통합가이드라인의…" 4개 페이지 동일</td><td>디자인 에이전시</td></tr>
+            <tr><td><code>/pages/history</code></td><td>"블록으로 쉽게 꾸미는 빌더" 빌더 자체 홍보 문구</td><td>빌더 안내</td></tr>
+            <tr><td><code>/pages/gallery</code></td><td>더미텍스트 + "MEDIA TECHNOLOGY"</td><td>미디어</td></tr>
+            <tr><td><code>/pages/map</code></td><td>"서울특별시 한국시외버스터미널에서 00000번 탑승", 전화 "0000-0000"</td><td>기본 양식</td></tr>
+            <tr><td><code>/pages/news</code></td><td>등록된 게시글 0건</td><td>게시판</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>이 밖에 메인 본문에 "테스트" 문자열이 남아 있고, 지도 API 키가 등록되지 않아 오시는 길 지도가 표시되지 않음. 관리자 최종 수정일은 2024년 10월 21일임.</p>
+      <div class="callout">
+        <span class="label">문제의 성격</span>
+        <p>미완성이 아니라 신뢰 훼손임. 발주기관 담당자나 상담 문의 고객이 검색으로 접근했을 때 웨딩 촬영 문구와 아파트 분양 문구를 보게 되며, 이는 홈페이지가 없는 상태보다 불리하게 작용함.</p>
+      </div>
+
+      <h3>검색 노출</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>SEO 기본 요소 점검</caption>
+          <thead><tr><th>항목</th><th>현재 상태</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td><code>&lt;title&gt;</code></td><td>15개 페이지 전부 "효율경영자문(주)" 동일</td><td>페이지 구분 불가, 클릭 유인 없음</td></tr>
+            <tr><td><code>meta description</code></td><td>15개 페이지 전부 "전문인력 전원 경영지도사" 동일</td><td>동일</td></tr>
+            <tr><td><code>h1</code> 태그</td><td class="num">전 페이지 0개</td><td>문서 주제 신호 부재</td></tr>
+            <tr><td>본문 렌더링</td><td>자바스크립트 클라이언트 렌더링</td><td>HTML 소스에 본문 텍스트 없음</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>"청주 경영컨설팅", "충북 정책자금" 같은 검색어로 노출될 근거가 페이지에 존재하지 않음. 네이버·구글 사이트 인증 태그는 삽입돼 있으나 색인할 내용이 없어 효과가 없음.</p>
+
+      <h3>성능과 기술 부채</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>리소스 측정값</caption>
+          <thead><tr><th>항목</th><th class="num">측정값</th></tr></thead>
+          <tbody>
+            <tr><td>CSS 파일</td><td class="num">39개</td></tr>
+            <tr><td>JS 파일</td><td class="num">37개</td></tr>
+            <tr><td>CSS + JS 합계 용량</td><td class="num">약 2.9MB</td></tr>
+            <tr><td>주요 라이브러리</td><td>jQuery 3.4.1, Font Awesome 4.7.0, Slick, Swiper, Masonry, Froala, WOW</td></tr>
+            <tr><td>웹폰트</td><td>Google Fonts 한글·영문 40여 종 전량 로드</td></tr>
+            <tr><td>캐시 정책</td><td><code>cache-control: no-cache, private</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>빌더가 모든 기능 모듈을 일괄 로드하는 구조라, 실제 사용하지 않는 쇼핑몰·에디터·업로드 관련 스크립트까지 내려받음.</p>
+
+      <h3>플랫폼</h3>
+      <p>clickn.co.kr 임대형 빌더 위에서 운영 중임. 소스코드 소유권이 없고, 디자인·마크업·SEO 제어 범위가 빌더 허용 범위로 제한됨. 컨설팅 회사에 불필요한 회원가입·로그인·장바구니 메뉴가 노출돼 있고, 슬러그 오타도 남아 있음(<code>cunsult</code>).</p>
+    </section>
+
+    <section class="chapter" id="c2">
+      <div class="chapter-head"><span class="chapter-num">02</span><h2>포지셔닝</h2></div>
+
+      <h3>전문서비스업의 신뢰 구조</h3>
+      <p>법무법인과 세무법인의 홈페이지는 공통적으로 세 개 축으로 신뢰를 만듦.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>신뢰 3축 대응</caption>
+          <thead><tr><th>축</th><th>법무법인</th><th>세무법인</th><th>효율경영자문 적용</th></tr></thead>
+          <tbody>
+            <tr><td>자격</td><td>변호사 자격</td><td>세무사 자격</td><td>경영지도사 (전문인력 전원 보유)</td></tr>
+            <tr><td>사람</td><td>구성원 변호사 프로필</td><td>구성원 세무사 프로필</td><td>전문위원 4인 개별 프로필</td></tr>
+            <tr><td>실적</td><td>수임·자문 사례</td><td>조사 대응·불복 사례</td><td>공공기관 발주 컨설팅 수행실적</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>기존 슬로건 "전문인력 전원 경영지도사"는 자격 축을 이미 확보한 문장임. 나머지 두 축이 사이트에 전혀 구현돼 있지 않은 것이 현 상태의 본질임.</p>
+
+      <h3>차별화 근거</h3>
+      <p>정책자금·사업계획서 시장에는 성공보수 기반 알선형 업체가 다수 존재하며, 이들 사이트는 대체로 "누적 3만 건, 승인율 85%" 형태의 검증 불가능한 집계 수치를 전면에 배치함. 반면 전남신용보증재단, 충남경제진흥원 등 공공기관이 발주한 컨설팅 사업을 수행한 이력은 검증 가능한 제3자 신뢰 자산이며, 알선형 업체가 제시할 수 없는 항목임.</p>
+      <p>발주기관명 공개가 가능하다는 조건이 확인됐으므로, 이 자산을 사이트 최상위 메뉴로 승격시켜 배치함.</p>
+
+      <h3>메시지 위계</h3>
+      <p>메인 페이지 상단부터 순서대로 다음 세 문장이 읽히도록 구성함.</p>
+      <ol>
+        <li>전문인력 전원 경영지도사 (자격)</li>
+        <li>공공기관이 발주한 컨설팅 사업을 수행하는 자문사 (신뢰)</li>
+        <li>경영진단, 정책자금, 사업계획서, 기업인증 (서비스)</li>
+      </ol>
+      <p>집계 수치를 쓸 경우 반드시 산출 기준을 병기함. 근거 없는 승인율·만족도 수치는 사용하지 않음.</p>
+    </section>
+
+    <section class="chapter" id="c3">
+      <div class="chapter-head"><span class="chapter-num">03</span><h2>정보구조 설계</h2></div>
+
+      <h3>기존 대비 변경</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>페이지 처리 방침</caption>
+          <thead><tr><th>기존 페이지</th><th>처리</th><th>사유</th></tr></thead>
+          <tbody>
+            <tr><td><code>/pages/about</code></td><td>유지, 확장</td><td>회사소개 하위로 재편</td></tr>
+            <tr><td><code>/pages/history</code></td><td>유지</td><td>연혁으로 유지</td></tr>
+            <tr><td><code>/pages/certification</code></td><td>유지</td><td>인증·자격으로 유지</td></tr>
+            <tr><td><code>/pages/map</code></td><td>유지</td><td>오시는 길로 유지</td></tr>
+            <tr><td><code>/pages/service</code></td><td>분해</td><td>전문분야 5개 하위 페이지로 분리</td></tr>
+            <tr><td><code>/diagnosis</code> <code>/government</code></td><td>이동</td><td>전문분야 하위로 통합</td></tr>
+            <tr><td><code>/jaemin</code> <code>/ha</code> <code>/ms</code> <code>/lee</code></td><td>슬러그 정규화</td><td><code>/professionals/[slug]</code> 구조로 통일</td></tr>
+            <tr><td><code>/pages/news</code></td><td>개편</td><td>인사이트(공고·칼럼)로 역할 확대</td></tr>
+            <tr><td><code>/pages/cunsult</code></td><td>폐기</td><td>슬러그 오타, 내용 없음</td></tr>
+            <tr><td><code>/pages/gallery</code></td><td>폐기</td><td>컨설팅 회사에 갤러리 메뉴 불필요</td></tr>
+            <tr><td>회원가입·로그인·장바구니</td><td>제거</td><td>쇼핑몰 기능, 사용 계획 없음</td></tr>
+            <tr><td>신설</td><td><code>/track-record</code></td><td>수행실적 최상위 메뉴</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>신규 정보구조</h3>
+<pre class="tree">/                        <span class="c">메인</span>
+/about                   <span class="c">회사소개</span>
+  /about/overview        <span class="c">인사말·회사개요</span>
+  /about/history         <span class="c">연혁</span>
+  /about/certification   <span class="c">인증·자격·등록증</span>
+  /about/location        <span class="c">오시는 길</span>
+/practice                <span class="c">전문분야</span>
+  /practice/diagnosis        <span class="c">경영진단</span>
+  /practice/policy-fund      <span class="c">정책자금·정부지원사업</span>
+  /practice/business-plan    <span class="c">사업계획서 수립</span>
+  /practice/certification    <span class="c">기업인증 (ISO, 벤처, 이노비즈)</span>
+  /practice/small-business   <span class="c">소상공인 컨설팅·멘토링</span>
+/professionals           <span class="c">전문위원</span>
+  /professionals/[slug]  <span class="c">개인 프로필</span>
+/track-record            <span class="c">수행실적</span>
+  /track-record/[year]   <span class="c">연도별 상세</span>
+/insights                <span class="c">인사이트</span>
+  /insights/[slug]       <span class="c">공고 요약·칼럼</span>
+/contact                 <span class="c">상담 문의</span></pre>
+      <p>메뉴는 6개로 제한함. 법무법인 표준 구조(업무분야 / 구성원 / 소개 / 소식 / 문의)에 수행실적을 추가한 형태임.</p>
+
+      <h3>전문분야 페이지 표준 구성</h3>
+      <p>전문분야 하위 5개 페이지는 동일한 골격을 사용함. 이 골격이 검색 유입과 상담 전환을 동시에 담당함.</p>
+      <ol>
+        <li>어떤 기업이 대상인가 (해당 없는 기업이 먼저 걸러지도록)</li>
+        <li>무엇을 진단하고 무엇을 산출하는가 (산출물 실물 명시)</li>
+        <li>진행 절차와 소요 기간</li>
+        <li>실제 수행 사례 (수진업체 익명 처리, 발주기관은 명시)</li>
+        <li>자주 묻는 질문</li>
+        <li>상담 문의 (해당 분야 사전 선택 상태)</li>
+      </ol>
+    </section>
+
+    <section class="chapter" id="c4">
+      <div class="chapter-head"><span class="chapter-num">04</span><h2>페이지별 필요 자산</h2></div>
+      <div class="table-wrap">
+        <table>
+          <caption>콘텐츠 인벤토리</caption>
+          <thead><tr><th>페이지</th><th>필요 자산</th><th>확보 방법</th></tr></thead>
+          <tbody>
+            <tr><td>메인</td><td>대표 이미지 1점, 핵심 메시지 3문장, 실적 요약 수치</td><td>신규 촬영·작성</td></tr>
+            <tr><td>인사말</td><td>대표 사진, 인사말 600자 내외</td><td>신규 촬영·작성</td></tr>
+            <tr><td>회사개요</td><td>상호, 설립일, 대표자, 사업자번호, 주소, 조직 구성</td><td>기존 보유</td></tr>
+            <tr><td>연혁</td><td>연도별 주요 사업 수주 이력</td><td>계약·수주 자료에서 추출</td></tr>
+            <tr><td>인증·자격</td><td>경영지도사 등록증, 사업자등록증, 기타 인증서 스캔</td><td>기존 보유</td></tr>
+            <tr><td>전문분야 5종</td><td>분야별 본문 각 1,500자 내외 + 절차도</td><td>신규 작성</td></tr>
+            <tr><td>전문위원 4인</td><td>인물 사진, 자격, 학력, 경력, 전문분야, 주요 수행실적</td><td>신규 촬영·작성</td></tr>
+            <tr><td>수행실적</td><td>연도 / 발주기관 / 사업명 / 역할 / 수행 건수</td><td>계약 자료에서 정리</td></tr>
+            <tr><td>인사이트</td><td>초기 5건 이상 (공고 요약 또는 칼럼)</td><td>신규 작성</td></tr>
+            <tr><td>오시는 길</td><td>지도, 주차 안내, 대중교통 경로</td><td>신규 작성</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <span class="label">사진 원칙</span>
+        <p>인물 사진은 스톡 이미지를 쓰지 않음. 전문가 조직 포지셔닝에서 스톡 인물 사진은 즉시 신뢰를 깎는 요소로 작동함. 동일 배경·동일 조명으로 4인 촬영을 권장함.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="c5">
+      <div class="chapter-head"><span class="chapter-num">05</span><h2>디자인 방향</h2></div>
+
+      <h3>기준</h3>
+      <p>법무법인·세무법인 계열의 절제된 기업형 레이아웃을 기준으로 삼음. 정보 밀도는 낮게, 여백은 넓게, 시각적 장식은 최소로 유지함. 디자인이 눈에 띄는 것이 아니라 내용이 정확해 보이는 것이 목표임. 지금 읽고 있는 이 문서가 제안하는 색·서체·간격 체계를 그대로 적용한 예시임.</p>
+
+      <h3>컬러</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#12365E"></div><span class="role">Primary</span><span class="hex">#12365E · 딥 네이비</span></div>
+        <div class="sw"><div class="chip" style="background:#0B2440"></div><span class="role">Primary Deep</span><span class="hex">#0B2440 · 푸터</span></div>
+        <div class="sw"><div class="chip" style="background:#9A6B2F"></div><span class="role">Accent</span><span class="hex">#9A6B2F · 브론즈</span></div>
+        <div class="sw"><div class="chip" style="background:#131A24"></div><span class="role">Ink</span><span class="hex">#131A24 · 본문</span></div>
+        <div class="sw"><div class="chip" style="background:#5B6675"></div><span class="role">Muted</span><span class="hex">#5B6675 · 보조</span></div>
+        <div class="sw"><div class="chip" style="background:#F7F8FA"></div><span class="role">Paper</span><span class="hex">#F7F8FA · 배경</span></div>
+        <div class="sw"><div class="chip" style="background:#DCE1E8"></div><span class="role">Rule</span><span class="hex">#DCE1E8 · 구분선</span></div>
+      </div>
+      <p>네이비는 안정성과 권위, 브론즈는 자격·인증의 상징으로 각각 최소량만 사용함. 그라디언트는 사용하지 않음.</p>
+
+      <h3>타이포그래피</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>서체 체계</caption>
+          <thead><tr><th>역할</th><th>서체</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>국문 헤드라인</td><td>Noto Serif KR 600</td><td>명조체로 권위 표현, 대제목에만 사용</td></tr>
+            <tr><td>국문 본문</td><td>Pretendard (또는 Gothic A1) 400/500/700</td><td>본문 16px, 행간 1.7</td></tr>
+            <tr><td>수치·라벨</td><td>IBM Plex Mono 500</td><td>연도, 건수, 영문 라벨</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>본문 한 줄 길이는 국문 기준 40자 내외로 제한함. 폰트는 필요한 굵기만 서브셋으로 self-host 하여 현재 40여 종을 로드하는 구조를 정리함.</p>
+
+      <h3>레이아웃 원칙</h3>
+      <ul>
+        <li>12컬럼 그리드, 최대 폭 1200px</li>
+        <li>모바일 우선, 분기점 375 / 768 / 1024 / 1440</li>
+        <li>섹션 간 수직 여백 96px 이상 (모바일 64px)</li>
+        <li>카드는 그림자 대신 1px 실선 테두리로 구분</li>
+        <li>모션은 150~300ms 페이드·상승만 사용, <code>prefers-reduced-motion</code> 대응</li>
+      </ul>
+
+      <h3>사용하지 않을 요소</h3>
+      <p>자동 회전 배너, 진입 팝업 레이어, 이모지 아이콘, 보라·분홍 그라디언트, 스톡 인물 사진, 근거 없는 집계 수치, 카운트업 애니메이션.</p>
+    </section>
+
+    <section class="chapter" id="c6">
+      <div class="chapter-head"><span class="chapter-num">06</span><h2>기술 아키텍처</h2></div>
+      <div class="table-wrap">
+        <table>
+          <caption>스택 구성</caption>
+          <thead><tr><th>영역</th><th>선택</th><th>사유</th></tr></thead>
+          <tbody>
+            <tr><td>프레임워크</td><td>Next.js 15 (App Router) + TypeScript</td><td>정적 생성으로 HTML에 본문 포함, 페이지별 메타데이터 개별 생성</td></tr>
+            <tr><td>스타일</td><td>Tailwind CSS + CSS 변수 토큰</td><td>디자인 토큰 일원화</td></tr>
+            <tr><td>콘텐츠</td><td>MDX 파일 기반 (초기)</td><td>게시 빈도 월 2~4건 수준이면 CMS 불필요</td></tr>
+            <tr><td>배포</td><td>Vercel</td><td>정적 배포, 자동 HTTPS, 프리뷰 환경</td></tr>
+            <tr><td>폼 처리</td><td>서버 액션 + Resend 이메일 발송</td><td>별도 백엔드 불필요</td></tr>
+            <tr><td>이미지</td><td>next/image, WebP·AVIF</td><td>용량 절감</td></tr>
+            <tr><td>분석</td><td>GA4 + Search Console + 네이버 서치어드바이저</td><td>유입 경로 측정</td></tr>
+            <tr><td>저장소</td><td>GitHub <code>jaemin-byeon/hyoyul-homepage</code></td><td>소스 소유, 변경 이력 관리</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>콘텐츠 등록을 대표가 직접 하되 코드를 다루지 않는 방식이 필요해지면 2단계에서 Sanity 또는 Contentlayer를 추가함. 초기부터 CMS를 붙이면 구축 기간과 유지비만 늘어남.</p>
+    </section>
+
+    <section class="chapter" id="c7">
+      <div class="chapter-head"><span class="chapter-num">07</span><h2>검색 노출 전략</h2></div>
+
+      <h3>구조적 조치</h3>
+      <ul>
+        <li>페이지별 <code>title</code>, <code>description</code>, OG 태그를 개별 생성함</li>
+        <li>정적 생성으로 HTML 소스에 본문 텍스트를 포함시킴</li>
+        <li><code>h1</code> 1개 원칙, <code>h2</code>·<code>h3</code> 계층 준수</li>
+        <li>구조화 데이터 삽입: Organization, LocalBusiness(청주 소재), Person(전문위원), Article(인사이트)</li>
+        <li><code>sitemap.xml</code>, <code>robots.txt</code> 자동 생성 후 검색엔진에 제출</li>
+      </ul>
+
+      <h3>목표 키워드</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>키워드 세트와 대응 페이지</caption>
+          <thead><tr><th>유형</th><th>키워드</th><th>대응 페이지</th></tr></thead>
+          <tbody>
+            <tr><td>지역 + 서비스</td><td>청주 경영컨설팅, 충북 경영지도사, 청주 정책자금</td><td>메인, 오시는 길</td></tr>
+            <tr><td>서비스</td><td>정책자금 사업계획서 작성, 중소기업 경영진단, 소상공인 컨설팅</td><td>전문분야 각 페이지</td></tr>
+            <tr><td>인증</td><td>벤처기업 인증 컨설팅, 이노비즈 인증, ISO 인증 컨설팅</td><td>전문분야 기업인증</td></tr>
+            <tr><td>정보 탐색</td><td>정책자금 신청 절차, 사업계획서 자금집행계획 작성법</td><td>인사이트</td></tr>
+            <tr><td>기관명</td><td>신용보증재단 컨설팅, 경제진흥원 멘토링</td><td>수행실적</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>지역 + 서비스 조합은 경쟁 강도가 낮아 초기 유입 확보에 유리함. 정보 탐색 키워드는 인사이트 콘텐츠로 대응하되, 축적에 6개월 이상 소요됨을 전제함.</p>
+
+      <h3>네이버 대응</h3>
+      <p>국내 B2B 검색은 네이버 비중이 높음. 서치어드바이저 등록과 별도로, 인사이트 게시글을 네이버 블로그에 요약 게재하고 원문 링크를 거는 방식으로 초기 유입을 보완함.</p>
+    </section>
+
+    <section class="chapter" id="c8">
+      <div class="chapter-head"><span class="chapter-num">08</span><h2>전환 설계</h2></div>
+      <p>상담 문의까지의 경로를 세 갈래로 만듦.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>문의 접점</caption>
+          <thead><tr><th>경로</th><th>접점</th><th>대상</th></tr></thead>
+          <tbody>
+            <tr><td>즉시</td><td>헤더 고정 전화번호, 모바일 하단 고정 통화 버튼</td><td>급한 문의</td></tr>
+            <tr><td>폼</td><td>전문분야 페이지 하단 문의 폼 (해당 분야 사전 선택)</td><td>검토 단계</td></tr>
+            <tr><td>문서</td><td>회사소개서 PDF 내려받기 (이메일 입력 후)</td><td>기관·법인 담당자</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>문의 폼 항목은 상호, 담당자명, 연락처, 문의분야, 내용 5개로 제한함. 개인정보 수집·이용 동의 체크박스는 필수이며, 개인정보처리방침 페이지를 별도 게시함.</p>
+    </section>
+
+    <section class="chapter" id="c9">
+      <div class="chapter-head"><span class="chapter-num">09</span><h2>실행 로드맵</h2></div>
+      <div class="table-wrap">
+        <table>
+          <caption>8주 일정</caption>
+          <thead><tr><th class="num">주차</th><th>단계</th><th>산출물</th><th>담당</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1주</td><td>자산 수집</td><td>수행실적 원장, 전문위원 이력, 인증서 스캔, 촬영 일정 확정</td><td>효율경영자문</td></tr>
+            <tr><td class="num">2주</td><td>설계 확정</td><td>최종 IA, 와이어프레임, 디자인 토큰 정의</td><td>공동</td></tr>
+            <tr><td class="num">3주</td><td>디자인</td><td>메인·전문분야·전문위원·수행실적 4개 화면 시안</td><td>개발</td></tr>
+            <tr><td class="num">3~6주</td><td>개발</td><td>Next.js 구축, 전 페이지 구현, 문의 폼 연동</td><td>개발</td></tr>
+            <tr><td class="num">4~6주</td><td>콘텐츠 작성</td><td>전문분야 5종 본문, 전문위원 4인 프로필, 인사이트 5건</td><td>효율경영자문</td></tr>
+            <tr><td class="num">7주</td><td>입력·검수</td><td>콘텐츠 입력, 크로스브라우저·모바일 검수, 접근성 점검</td><td>공동</td></tr>
+            <tr><td class="num">8주</td><td>전환</td><td>도메인 DNS 전환, 색인 요청, GA4 연동, clickn 해지</td><td>개발</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <span class="label">임계 경로</span>
+        <p>콘텐츠 작성(4~6주)이 전체 일정의 임계 경로임. 개발은 콘텐츠 없이도 병행 가능하나 검수 단계는 콘텐츠가 있어야 시작됨. 4주차까지 전문분야 본문 초안이 나오지 않으면 전체 일정이 그만큼 밀림.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="c10">
+      <div class="chapter-head"><span class="chapter-num">10</span><h2>준비 자산 체크리스트</h2></div>
+      <p>착수 전 확보가 필요한 항목임.</p>
+      <ul class="checklist">
+        <li><span class="box"></span><span>연도별 수행실적 원장 (발주기관 / 사업명 / 수행기간 / 역할 / 건수)</span></li>
+        <li><span class="box"></span><span>전문위원 4인 이력 (성명, 자격, 학력, 경력, 전문분야, 주요 수행실적)</span></li>
+        <li><span class="box"></span><span>경영지도사 등록증, 사업자등록증, 보유 인증서 스캔본</span></li>
+        <li><span class="box"></span><span>대표 인사말 초안</span></li>
+        <li><span class="box"></span><span>인물 사진 촬영 (4인, 동일 배경·조명)</span></li>
+        <li><span class="box"></span><span>사무실 외경·내부 사진</span></li>
+        <li><span class="box"></span><span>회사 로고 원본 파일 (AI 또는 SVG)</span></li>
+        <li><span class="box"></span><span>발주기관명 공개에 관한 계약상 비밀유지 조항 최종 확인</span></li>
+        <li><span class="box"></span><span>clickn 계약 만료일 및 해지 조건 확인</span></li>
+        <li><span class="box"></span><span>hyoyul.co.kr 도메인 등록처 및 관리 계정 확인</span></li>
+      </ul>
+      <p>로고 원본과 도메인 관리 계정 두 항목은 확인이 늦어지면 착수가 지연되므로 1주차 내 처리가 필요함.</p>
+    </section>
+
+    <section class="chapter" id="c11">
+      <div class="chapter-head"><span class="chapter-num">11</span><h2>리스크</h2></div>
+      <div class="table-wrap">
+        <table>
+          <caption>리스크와 대응</caption>
+          <thead><tr><th>리스크</th><th>영향</th><th>대응</th></tr></thead>
+          <tbody>
+            <tr><td>콘텐츠 작성 지연</td><td>전체 일정 지연</td><td>전문분야 5종을 우선순위대로 순차 오픈, 미완성 페이지는 준비 중 표기 없이 미노출</td></tr>
+            <tr><td>발주기관명 공개 제한</td><td>핵심 자산 사용 불가</td><td>계약서 비밀유지 조항 사전 확인. 제한 시 기관 유형 표기로 수준 조정</td></tr>
+            <tr><td>도메인 전환 시 접속 중단</td><td>단기 노출 손실</td><td>DNS TTL 사전 단축, 검수 완료 후 전환, clickn 해지는 전환 확인 후 진행</td></tr>
+            <tr><td>기존 URL 색인 손실</td><td>없음에 가까움</td><td>현 사이트 색인 자산이 사실상 없으므로 리다이렉트 최소 구성으로 충분</td></tr>
+            <tr><td>구축 후 방치</td><td>6개월 내 현 상태로 회귀</td><td>인사이트 월 2건 게시를 운영 규칙으로 고정. 부담이 크면 공고 요약 형식으로 대체</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <span class="label">최대 리스크</span>
+        <p>기술이 아니라 운영임. 현 사이트가 2024년 10월 이후 손대지 않은 상태로 방치된 원인을 구조적으로 제거하지 않으면 같은 결과가 반복됨. 인사이트를 부담이 적은 공고 요약 형식으로 설계하는 이유가 여기에 있음.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="c12">
+      <div class="chapter-head"><span class="chapter-num">12</span><h2>비용 구조</h2></div>
+      <p>자체 구축이므로 외주 제작비는 발생하지 않음. 유지 항목만 정리함.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>연간 유지 비용</caption>
+          <thead><tr><th>항목</th><th class="num">연간 비용 수준</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>도메인 (hyoyul.co.kr)</td><td class="num">2만원 내외</td><td>기존 유지</td></tr>
+            <tr><td>호스팅 (Vercel)</td><td class="num">무료 ~ 30만원</td><td>트래픽 규모상 무료 구간으로 시작 가능</td></tr>
+            <tr><td>이메일 발송 (Resend)</td><td class="num">무료</td><td>월 3,000건까지 무료</td></tr>
+            <tr><td>인물 사진 촬영</td><td class="num">30~60만원</td><td>1회, 4인 프로필</td></tr>
+            <tr><td>clickn 빌더</td><td class="num">해지로 절감</td><td>현 계약 조건 확인 필요</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="chapter" id="c13">
+      <div class="chapter-head"><span class="chapter-num">13</span><h2>다음 결정 사항</h2></div>
+      <p>전략을 실행으로 옮기기 전 확정이 필요한 항목임.</p>
+      <ol>
+        <li>전문위원 4인의 실명·사진 공개 여부 (법무법인 방식대로 전원 공개를 권장함)</li>
+        <li>전문분야 5개 분류의 최종 확정 (현재안: 경영진단 / 정책자금 / 사업계획서 / 기업인증 / 소상공인 컨설팅)</li>
+        <li>인사이트 운영 주기와 담당자</li>
+        <li>착수 시점</li>
+      </ol>
+      <div class="closing">
+        <p>이 문서는 확정안이 아니라 검토용 초안임. 항목별 수정 의견을 반영해 실행 계획으로 전환함.</p>
+      </div>
+    </section>
+  </article>
+</div>
