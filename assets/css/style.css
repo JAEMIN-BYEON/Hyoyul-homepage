@@ -476,7 +476,7 @@ a.pro-card:hover { border-color: var(--navy); transform: translateY(-3px); box-s
 @media (min-width: 900px) { .site-footer { padding-bottom: 3rem; } }
 .footer-inner { display: flex; flex-direction: column; gap: 1.4rem; }
 .footer-brand { color: #E8EEF5; font-weight: 800; font-size: 1.02rem; letter-spacing: -0.015em; }
-.footer-logo { display: block; height: 28px; width: auto; max-width: none; }
+.footer-logo { display: block; height: 28px; width: auto; max-width: none; align-self: flex-start; }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.6rem; font-size: 0.84rem; }
 .footer-nav a { color: #B8C4D2; text-decoration: none; }
 .footer-nav a:hover { color: #fff; }
