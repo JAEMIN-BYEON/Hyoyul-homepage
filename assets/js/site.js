@@ -12,7 +12,7 @@
   }
 
   // 스크롤 리빌 (reduced-motion 사용자는 CSS에서 즉시 표시)
-  var targets = document.querySelectorAll('.sec-head, .card, .stat, .pro-card, .timeline li, .svc-list li');
+  var targets = document.querySelectorAll('.sec-head, .card, .stat, .pro-card, .timeline li, .svc-list li, .steps li, .need, .faq details, .deliv li');
   if ('IntersectionObserver' in window && targets.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
