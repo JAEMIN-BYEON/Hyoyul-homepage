@@ -51,9 +51,8 @@ a { color: inherit; }
 
 /* ---------- header ---------- */
 .site-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(8px);
+  position: sticky; top: 0; z-index: 80;
+  background: var(--surface);
   border-bottom: 1px solid var(--rule);
 }
 .header-inner { display: flex; align-items: center; gap: 1.25rem; height: 68px; }
@@ -85,20 +84,34 @@ a { color: inherit; }
 /* 모바일 패널 */
 .gnb.open {
   display: block;
-  position: absolute; left: 0; right: 0; top: 68px;
-  background: var(--surface); border-bottom: 1px solid var(--rule);
-  max-height: calc(100vh - 68px); overflow-y: auto;
+  position: fixed; left: 0; right: 0; top: 68px; bottom: 0;
+  background: var(--surface);
+  overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
 }
-.gnb.open > ul { padding: 0.5rem 1.5rem 1.5rem; }
-.gnb.open > ul > li { border-bottom: 1px solid var(--rule-soft); }
+body.nav-open { overflow: hidden; }
+body.nav-open .callbar { display: none; }
+.gnb.open > ul { padding: 0.5rem 1.5rem calc(2.5rem + env(safe-area-inset-bottom)); }
+.gnb.open > ul > li { position: relative; border-bottom: 1px solid var(--rule-soft); }
 .gnb.open > ul > li > a {
-  display: block; padding: 0.85rem 0.25rem; font-weight: 700; font-size: 0.98rem;
+  display: block; padding: 0.95rem 3rem 0.95rem 0.25rem; font-weight: 700; font-size: 0.98rem;
 }
-.gnb.open .sub { padding: 0 0 0.75rem; }
+.gnb.open .sub-toggle {
+  position: absolute; top: 5px; right: 0; width: 44px; height: 44px;
+  background: none; border: none; cursor: pointer; color: var(--muted); padding: 0;
+}
+.gnb.open .sub-toggle::before {
+  content: "+"; display: block; font-size: 1.35rem; line-height: 1; font-weight: 400;
+  transition: transform 180ms ease;
+}
+.gnb.open li.sub-open .sub-toggle::before { transform: rotate(45deg); color: var(--navy); }
+.gnb.open .sub { display: none; padding: 0 0 0.85rem; }
+.gnb.open li.sub-open .sub { display: block; }
 .gnb.open .sub a {
-  display: block; padding: 0.4rem 1rem; font-size: 0.9rem; color: var(--muted);
+  display: block; padding: 0.5rem 1rem; font-size: 0.9rem; color: var(--muted);
 }
 .gnb.open .sub a:hover { color: var(--navy); }
+.sub-toggle { display: none; }
+.gnb.open .sub-toggle { display: block; }
 
 /* 데스크톱 */
 @media (min-width: 960px) {

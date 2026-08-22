@@ -3,11 +3,32 @@
   var toggle = document.querySelector('.nav-toggle');
   var gnb = document.querySelector('.gnb');
   if (toggle && gnb) {
+    // 하위 메뉴 접이식 토글 버튼 생성
+    gnb.querySelectorAll(':scope > ul > li').forEach(function (li) {
+      if (!li.querySelector('.sub')) return;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'sub-toggle';
+      btn.setAttribute('aria-label', '하위 메뉴 열기');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = li.classList.toggle('sub-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      li.appendChild(btn);
+    });
+
     toggle.addEventListener('click', function () {
       var open = gnb.classList.toggle('open');
       toggle.classList.toggle('open', open);
+      document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+      if (open) {
+        var act = gnb.querySelector('li.active');
+        if (act && act.querySelector('.sub')) act.classList.add('sub-open');
+      }
     });
   }
 
