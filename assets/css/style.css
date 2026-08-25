@@ -73,14 +73,6 @@ a { color: inherit; }
 .gnb ul { list-style: none; margin: 0; padding: 0; }
 .gnb a { text-decoration: none; }
 
-.header-tel {
-  display: none; text-decoration: none; flex: none;
-  font-family: var(--mono); font-size: 0.86rem; font-weight: 500; color: var(--navy);
-  border: 1px solid var(--navy); padding: 0.4rem 0.9rem;
-  transition: background 160ms ease, color 160ms ease;
-}
-.header-tel:hover { background: var(--navy); color: #fff; }
-
 /* 모바일 패널 */
 .gnb.open {
   display: block;
@@ -116,7 +108,6 @@ body.nav-open .callbar { display: none; }
 /* 데스크톱 */
 @media (min-width: 960px) {
   .nav-toggle { display: none; }
-  .header-tel { display: inline-block; }
   .gnb { display: block; margin-left: auto; position: static; }
   .gnb > ul { display: flex; }
   .gnb > ul > li { position: relative; border: none; }
