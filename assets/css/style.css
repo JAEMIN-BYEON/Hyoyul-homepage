@@ -121,7 +121,7 @@ body.nav-open .callbar { display: none; }
   .gnb > ul { display: flex; }
   .gnb > ul > li { position: relative; border: none; }
   .gnb > ul > li > a {
-    display: block; padding: 1.35rem 0.75rem; font-size: 0.92rem; font-weight: 600; color: var(--ink);
+    display: block; padding: 1.35rem 1rem; font-size: 0.94rem; font-weight: 600; color: var(--ink);
     transition: color 160ms ease;
   }
   .gnb > ul > li > a:hover { color: var(--navy); }
