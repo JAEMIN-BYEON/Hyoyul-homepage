@@ -43,12 +43,40 @@
     targets.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
 
-  // 시안 단계: 폼 발송은 구축 시 이메일 연동
+  // 상담 폼: Formspree로 발송, 이메일 알림 수신
   var form = document.querySelector('form.form');
   if (form) {
+    var status = form.querySelector('.form-status');
+    var setStatus = function (msg, ok) {
+      if (!status) { alert(msg); return; }
+      status.hidden = false;
+      status.textContent = msg;
+      status.style.color = ok ? 'var(--navy)' : '#B4232A';
+    };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      alert('시안 화면입니다. 실제 구축 시 이메일 발송이 연동됩니다.');
+      if (form.action.indexOf('FORMSPREE_ID') !== -1) {
+        setStatus('폼 발송이 아직 연동 전입니다. 전화(043-294-0428) 또는 이메일(hyoyul0428@naver.com)로 문의해 주세요.', false);
+        return;
+      }
+      var btn = form.querySelector('.btn-submit');
+      if (btn) { btn.disabled = true; btn.textContent = '보내는 중…'; }
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      }).then(function (res) {
+        if (res.ok) {
+          form.reset();
+          setStatus('문의가 접수되었습니다. 담당 경영지도사가 확인 후 연락드리겠습니다.', true);
+        } else {
+          setStatus('발송에 실패했습니다. 전화(043-294-0428) 또는 이메일(hyoyul0428@naver.com)로 문의해 주세요.', false);
+        }
+      }).catch(function () {
+        setStatus('발송에 실패했습니다. 전화(043-294-0428) 또는 이메일(hyoyul0428@naver.com)로 문의해 주세요.', false);
+      }).finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = '문의 보내기'; }
+      });
     });
   }
 })();

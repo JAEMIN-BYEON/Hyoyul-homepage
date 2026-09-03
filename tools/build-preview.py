@@ -11,9 +11,13 @@ import re, os, glob, json, base64, mimetypes
 def esc(s):
     return s.replace('</', '<\\/')
 
+FONT_CDN = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">'
+
 pages = {}
 for f in ['index.html'] + sorted(glob.glob('pages/*.html')):
     html = open(f).read()
+    # srcdoc iframe은 상대경로 폰트를 못 읽으므로 프리뷰에서만 CDN으로 대체
+    html = re.sub(r'<link rel="stylesheet" href="(?:\.\./)?assets/fonts/pretendard/pretendardvariable-dynamic-subset\.css">', FONT_CDN, html)
     html = re.sub(r'<link rel="stylesheet" href="(?:\.\./)?assets/css/style\.css">', '<style>__CSS__</style>', html)
     html = re.sub(r'<script src="(?:\.\./)?assets/js/site\.js"(?: defer)?></script>', '<script>__JS__</script>', html)
     html = re.sub(r'(?:\.\./)?assets/img/([A-Za-z0-9._/-]+)', r'__IMG__\1', html)
