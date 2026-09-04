@@ -149,6 +149,10 @@ body.nav-open .callbar { display: none; }
   margin: 0; font-weight: 800; letter-spacing: -0.03em;
   font-size: clamp(1.7rem, 4.5vw, 2.6rem); line-height: 1.25; text-wrap: balance;
 }
+.page-hero h1 .h1-cert {
+  font-size: clamp(0.82rem, 1.8vw, 1.02rem); font-weight: 500; letter-spacing: -0.01em;
+  color: var(--accent-soft); margin-left: 0.55rem; vertical-align: 0.4em; white-space: nowrap;
+}
 .page-hero .lede { margin: 1.1rem 0 0; max-width: 56ch; color: #AEBCCC; font-weight: 300; }
 .breadcrumb {
   margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem;
@@ -396,12 +400,14 @@ a.pro-card:hover { border-color: var(--navy); transform: translateY(-3px); box-s
 .notice-list .nb { padding: 0 1.2rem 1.3rem; font-size: 0.92rem; line-height: 1.75; color: var(--muted); max-width: 72ch; margin: 0; }
 
 /* ---------- 프로필 재구성 ---------- */
-.profile-head { display: flex; gap: 1.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 2.25rem; }
+.profile-head { display: flex; gap: clamp(1.5rem, 3.5vw, 2.75rem); align-items: center; flex-wrap: wrap; margin-bottom: 2.25rem; }
 .profile-head .photo {
-  flex: none; width: 128px; aspect-ratio: 3 / 4; background: var(--shade);
+  flex: none; width: clamp(160px, 24vw, 232px); aspect-ratio: 3 / 4; background: var(--shade);
   border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
-.profile-head .photo svg { width: 52px; height: 52px; color: #B9C3CF; }
+.profile-head .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-head .photo svg { width: 76px; height: 76px; color: #B9C3CF; }
 .profile-head .who { display: flex; flex-direction: column; gap: 0.4rem; }
 .profile-head .position { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin: 0; }
 .profile-head .cert { font-size: 1.02rem; font-weight: 700; color: var(--navy); margin: 0; }
