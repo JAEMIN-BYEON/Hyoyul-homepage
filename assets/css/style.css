@@ -375,10 +375,10 @@ a.pro-card:hover { border-color: var(--navy); transform: translateY(-3px); box-s
 @media (min-width: 640px) { .logo-wall { grid-template-columns: repeat(4, 1fr); } }
 @media (min-width: 1024px) { .logo-wall.cols-8 { grid-template-columns: repeat(8, 1fr); } .logo-wall.cols-7 { grid-template-columns: repeat(7, 1fr); } .logo-wall.cols-5 { grid-template-columns: repeat(5, 1fr); } .logo-wall { grid-template-columns: repeat(4, 1fr); } }
 .logo-tile {
-  background: var(--surface); min-height: 76px; padding: 1rem 0.9rem;
+  background: var(--surface); min-height: 104px; padding: 1.2rem 1.1rem;
   display: flex; align-items: center; justify-content: center; text-align: center;
 }
-.logo-tile img { max-height: 40px; width: auto; max-width: 100%;
+.logo-tile img { max-height: 58px; width: auto; max-width: 100%;
   filter: grayscale(1) opacity(0.72); transition: filter 200ms ease; }
 .logo-tile:hover img { filter: none; }
 .logo-tile .txt { font-size: 0.84rem; font-weight: 600; color: var(--muted); line-height: 1.4; word-break: keep-all; }
