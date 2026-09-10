@@ -1,71 +1,73 @@
-# 배포 가이드 (GitHub Pages + 가비아)
+# 효율경영자문 홈페이지 배포 매뉴얼
 
-작성일 2026.09.03. 대상: hyoyul.co.kr / 저장소 JAEMIN-BYEON/Hyoyul-homepage
+기준일 2026.09.10 / 저장소 JAEMIN-BYEON/Hyoyul-homepage / 도메인 hyoyul.co.kr (가비아 등록)
 
-## 1. 배포 구조
+## 0. 구조 요약
 
-- 호스팅: GitHub Pages (무료, 저장소가 공개라 추가 비용·계정 없음)
-- 반영 방식: main 브랜치에 푸시하면 1~2분 내 자동 배포. 수정이 잦아도 별도 작업 없음
-- 도메인: 가비아 등록 hyoyul.co.kr → DNS만 GitHub로 변경
-- 폰트: Pretendard 서브셋 92개 파일을 assets/fonts/에 셀프호스팅 완료 (CDN 의존 제거)
+- 호스팅: GitHub Pages (무료). main 브랜치에 푸시하면 1~2분 내 자동 반영
+- 도메인: 가비아 DNS를 GitHub로 향하게 변경 (아래 표)
+- 상담 폼: Formspree 연동 준비 완료, 폼 ID만 교체하면 hyoyul0428@naver.com으로 접수 메일 수신
+- 폰트·이미지: 저장소에 셀프호스팅 완료, 외부 의존 없음
 
-## 2. 최초 1회 설정
+## 1. 최초 배포 (1회)
 
-### 2-1. GitHub Pages 켜기
+### 1-1. GitHub Pages 켜기 — 약 3분
 
-1. 브랜치 병합 후 GitHub 저장소 → Settings → Pages
-2. Source: Deploy from a branch / Branch: main / 폴더: / (root) → Save
-3. Custom domain에 `www.hyoyul.co.kr` 입력 → Save (저장소의 CNAME 파일과 일치)
-4. DNS 전파 후 Enforce HTTPS 체크
+1. github.com/JAEMIN-BYEON/Hyoyul-homepage 접속 → Settings → 왼쪽 메뉴 Pages
+2. Build and deployment > Source: **Deploy from a branch**
+3. Branch: **main** / 폴더 **/ (root)** 선택 → Save
+4. 1~2분 뒤 `https://jaemin-byeon.github.io/Hyoyul-homepage/` 에서 사이트 확인
+5. Custom domain 칸에 `www.hyoyul.co.kr` 입력 → Save (저장소의 CNAME 파일과 일치해야 함. 이미 넣어둠)
 
-### 2-2. 가비아 DNS 설정
+### 1-2. 가비아 DNS 변경 — 약 5분 + 전파 대기
 
-가비아 → My가비아 → 도메인 관리 → hyoyul.co.kr → DNS 정보 → DNS 관리에서 아래 레코드 등록.
-기존 클릭엔 관련 레코드(A 또는 CNAME)는 삭제.
+My가비아 → 도메인 → hyoyul.co.kr → 관리 → DNS 정보 → DNS 관리에서:
 
-| 타입 | 호스트 | 값 |
-|---|---|---|
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| CNAME | www | jaemin-byeon.github.io. |
+| 작업 | 타입 | 호스트 | 값/위치 |
+|---|---|---|---|
+| 삭제 | 기존 클릭엔 관련 A/CNAME 레코드 전부 | | |
+| 추가 | A | @ | 185.199.108.153 |
+| 추가 | A | @ | 185.199.109.153 |
+| 추가 | A | @ | 185.199.110.153 |
+| 추가 | A | @ | 185.199.111.153 |
+| 추가 | CNAME | www | jaemin-byeon.github.io. |
 
-- 전파에 수 분~수 시간 소요. `hyoyul.co.kr`, `www.hyoyul.co.kr` 둘 다 접속 확인 후 다음 단계로
-- 클릭엔 해지는 전환 확인 이후에 진행 (먼저 해지하면 전환 전까지 사이트 공백 발생)
+- 전파는 보통 수 분~수 시간. `hyoyul.co.kr`과 `www.hyoyul.co.kr` 둘 다 새 사이트가 뜨는지 확인
+- 확인 후 GitHub Settings → Pages에서 **Enforce HTTPS** 체크 (인증서 자동 발급, 최대 24시간)
 
-### 2-3. 상담 폼 이메일 연동 (Formspree)
+### 1-3. 클릭엔 해지 — DNS 전파 확인 후에만
 
-폼 발송은 Formspree 무료 플랜(월 50건) 기준으로 준비되어 있음. 연동 절차:
+새 사이트 접속이 확인되기 전에 해지하면 그 사이 홈페이지 공백이 생김. 반드시 순서 지킬 것.
 
-1. https://formspree.io 가입 (수신 메일: hyoyul0428@naver.com)
-2. New form 생성 → `https://formspree.io/f/xxxxxxxx` 형태의 endpoint 발급
-3. `pages/consult.html`에서 `FORMSPREE_ID`를 발급받은 ID(xxxxxxxx)로 교체 후 푸시
-4. 첫 발송 시 Formspree가 보내는 확인 메일에서 승인
+### 1-4. 상담 폼 이메일 연동 (Formspree) — 약 5분
 
-연동 전에는 폼 제출 시 전화·이메일 안내 문구가 표시됨. 접수되면 hyoyul0428@naver.com으로
-상호·담당자명·연락처·문의분야·문의내용이 담긴 메일이 옴. 스팸 차단용 honeypot 필드 적용됨.
+1. formspree.io 가입 (수신 메일 hyoyul0428@naver.com)
+2. New form 생성 → `https://formspree.io/f/xxxxxxxx` 형태의 ID 발급
+3. 발급 ID를 Claude에게 전달 → pages/consult.html의 `FORMSPREE_ID` 교체 후 푸시
+4. 첫 발송 시 Formspree 확인 메일에서 승인 → 이후 접수 건마다 메일 수신 (무료 월 50건)
 
-## 3. 배포 후 수정 흐름
+연동 전에는 폼 제출 시 전화·이메일 안내 문구가 표시됨 (공백 없음).
 
-1. Claude Code(또는 직접 편집)로 파일 수정
-2. main에 푸시 → 1~2분 내 자동 반영
-3. 프리뷰 시안을 계속 쓰려면 수정 후 `python3 tools/build-preview.py` 실행 (배포와는 무관, 아티팩트 미리보기 전용)
+## 2. 배포 후 수정 흐름 (점진 개선)
 
-## 4. 배포 파일 구성
+1. Claude Code 세션에서 수정 요청 (지금처럼)
+2. 수정 내용을 **main 브랜치에 병합·푸시하는 것까지** 요청 — main에 반영되어야 실사이트에 뜸
+3. 푸시 후 1~2분 내 자동 반영. 별도 업로드·빌드 작업 없음
+4. 시안 미리보기(아티팩트)는 참고용이며 실사이트와 무관
 
-| 파일 | 용도 |
-|---|---|
-| CNAME | GitHub Pages 커스텀 도메인 (www.hyoyul.co.kr) |
-| .nojekyll | Jekyll 빌드 생략 (정적 파일 그대로 서빙) |
-| robots.txt | 검색엔진 허용, docs/ 제외, sitemap 위치 안내 |
-| sitemap.xml | 전체 21개 페이지 목록 (페이지 추가·삭제 시 갱신 필요) |
-| 404.html | 없는 주소 접속 시 안내 페이지 |
+## 3. 남은 콘텐츠 작업 (사이트는 운영하면서 채움)
 
-## 5. 공개 전 남은 확인 사항
+- [ ] Formspree ID 교체 (1-4)
+- [ ] 전문인력 상반신 사진 7명 (칸은 준비됨, 파일만 주면 반영)
+- [ ] 이태휘·김민지 학력, 김민지 자격
+- [ ] (주)에스엠피 로고 원본 (회사에 요청)
+- [ ] 이용약관·개인정보처리방침 페이지 (푸터 링크 #none 상태)
+- [ ] 인사이트 칼럼 8편·FAQ 검수
+- [ ] 네이버 서치어드바이저·구글 서치콘솔 등록 (검색 노출, 선택)
 
-- [ ] Formspree ID 교체 (2-3)
-- [ ] "확정 후 기재" placeholder 정리 (학력, 김민지 자격 등)
-- [ ] 함께한 기업 명단·로고, 인물 사진 교체
-- [ ] 이용약관·개인정보처리방침 페이지 (푸터 링크가 현재 #none)
-- [ ] 네이버 서치어드바이저·구글 서치콘솔 등록 (선택)
+## 4. 문제가 생기면
+
+- 사이트가 안 뜸: GitHub 저장소 → Actions 탭에서 pages-build-deployment 실패 여부 확인
+- 도메인 접속 안 됨: 가비아 DNS 레코드 값과 위 표 대조, 전파 대기 (최대 48시간)
+- 폼 메일 안 옴: Formspree 대시보드에서 접수 여부 확인, 스팸함 확인
+- 무엇이든 Claude Code 세션에 증상을 말하면 원인 확인 가능
