@@ -299,11 +299,12 @@ a.card--img:hover > img { filter: saturate(1); }
 .pro-card { transition: border-color 180ms ease, transform 220ms ease, box-shadow 220ms ease; }
 a.pro-card:hover { border-color: var(--navy); transform: translateY(-3px); box-shadow: 0 12px 28px rgba(11,36,64,0.1); }
 .pro-photo {
-  aspect-ratio: 4 / 5; background: var(--shade);
+  aspect-ratio: 3 / 4; background: var(--shade); position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid var(--rule);
 }
 .pro-photo svg { width: 84px; height: 84px; color: #B9C3CF; }
+.pro-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .pro-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .pro-body .position { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); }
 .pro-body h3 { margin: 0; font-size: 1.16rem; font-weight: 700; letter-spacing: -0.02em; }
