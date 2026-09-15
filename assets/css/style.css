@@ -412,6 +412,7 @@ a.pro-card:hover { border-color: var(--navy); transform: translateY(-3px); box-s
 .profile-head .who { display: flex; flex-direction: column; gap: 0.4rem; }
 .profile-head .position { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin: 0; }
 .profile-head .cert { font-size: 1.02rem; font-weight: 700; color: var(--navy); margin: 0; }
+.profile-head .cert .name { font-size: 1.5rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; margin-right: 0.35rem; }
 .pf-grid { display: grid; gap: 1.4rem; grid-template-columns: 1fr; }
 @media (min-width: 820px) { .pf-grid { grid-template-columns: 1fr 1fr; } .pf-wide { grid-column: 1 / -1; } }
 .pf-block { border: 1px solid var(--rule); background: var(--surface); padding: 1.5rem 1.6rem 1.7rem; }
